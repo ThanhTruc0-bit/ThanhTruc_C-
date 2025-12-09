@@ -1,0 +1,17 @@
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\Example.exe
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\Example.deps.json
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\Example.runtimeconfig.json
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\Example.dll
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\Example.pdb
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.Form1.resources
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.csproj.GenerateResource.cache
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.GeneratedMSBuildEditorConfig.editorconfig
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.AssemblyInfoInputs.cache
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.AssemblyInfo.cs
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.csproj.CoreCompileInputs.cache
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.dll
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\refint\Example.dll
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.pdb
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.genruntimeconfig.cache
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\ref\Example.dll
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example01.Form2.resources
