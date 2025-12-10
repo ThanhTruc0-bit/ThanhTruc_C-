@@ -6,21 +6,25 @@
 
         private void InitializeComponent()
         {
-            this.bt_OK = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-
+            bt_OK = new Button();
+            SuspendLayout();
+            // 
             // bt_OK
-            this.bt_OK.Location = new System.Drawing.Point(100, 100);
-            this.bt_OK.Name = "bt_OK";
-            this.bt_OK.Size = new System.Drawing.Size(80, 25);
-            this.bt_OK.Text = "OK";
-            this.bt_OK.Click += new System.EventHandler(this.bt_OK_Click);
-
+            // 
+            bt_OK.Location = new Point(99, 100);
+            bt_OK.Name = "bt_OK";
+            bt_OK.Size = new Size(80, 25);
+            bt_OK.TabIndex = 0;
+            bt_OK.Text = "OK";
+            bt_OK.Click += bt_OK_Click;
+            // 
             // Form2
-            this.Controls.Add(this.bt_OK);
-            this.Name = "Form2";
-            this.Text = "Form2";
-            this.ResumeLayout(false);
+            // 
+            ClientSize = new Size(282, 253);
+            Controls.Add(bt_OK);
+            Name = "Form2";
+            Text = "Form2";
+            ResumeLayout(false);
         }
     }
 }

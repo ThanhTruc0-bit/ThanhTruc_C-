@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace Example
 {
-    using System.Drawing;
-
     public class InfoWindows
     {
         public int Width { get; set; }
         public int Height { get; set; }
-        public Point Location { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Title { get; set; } = string.Empty;
     }
-
 }
