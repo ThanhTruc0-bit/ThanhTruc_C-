@@ -82,7 +82,6 @@ namespace Example
                 txtDisplay.Text = currVal.ToString();
             }
 
-            // 5. Logic chức năng bộ nhớ (M+ / M-)
             else if (bt.Text == "M+")
             {
                 memory = memory + decimal.Parse(txtDisplay.Text);
@@ -92,7 +91,6 @@ namespace Example
                 memory = memory - decimal.Parse(txtDisplay.Text);
             }
 
-            // 6. Logic chức năng xóa và bộ nhớ (C / CE / MS / MR / MC / Backspace)
             else if (bt.Text == "C")
             {
                 workingMemory = 0;
