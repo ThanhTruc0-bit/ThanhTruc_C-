@@ -20,5 +20,7 @@ namespace Example
 
         // Giới tính (True/False, thường True là Nam/Checked)
         public bool Gender { get; set; }
+
+        public string ImagePath { get; set; }
     }
 }

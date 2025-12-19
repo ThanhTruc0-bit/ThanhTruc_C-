@@ -14,7 +14,6 @@ D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\refint\Example.dll
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.pdb
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.genruntimeconfig.cache
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\ref\Example.dll
-D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example01.Form2.resources
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.sourcelink.json
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.Form3.resources
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.Form4.resources
@@ -41,3 +40,11 @@ D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\images\basket.png
 D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\images\chicken.png
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.Form22.resources
 D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\images\background.png
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\images\catch_sound.wav
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\images\Game_Over_Retro.wav
+D:\NguyenThiThanhTruc_119\Example\bin\Debug\net8.0-windows\images\break_sound .wav
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormMenu.resources
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormLogin.resources
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormQL.resources
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormDashboard.resources
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.Form2.resources

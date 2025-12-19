@@ -6,8 +6,6 @@ using System.IO;
 
 namespace Example
 {
-
-
     public partial class Form22 : Form
     {
         int score = 0;
@@ -16,79 +14,62 @@ namespace Example
         SoundPlayer catchPlayer = new SoundPlayer();
         SoundPlayer breakPlayer = new SoundPlayer();
 
-        // Khai báo biến vị trí và tốc độ
-        int xBasket;
-        int yBasket;
+        // Basket
+        int xBasket, yBasket;
         int xDeltaBasket = 30;
 
-        int xChicken;
-        int yChicken;
+        // Chicken
+        int xChicken, yChicken;
         int xDeltaChicken = 5;
 
-        int xEgg;
-        int yEgg;
+        // Egg
+        int xEgg, yEgg;
         int yDeltaEgg = 3;
 
         public Form22()
         {
-            // Tự động tạo và thiết lập Controls
             InitializeComponent();
 
+            this.DoubleBuffered = true;
             this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(Form22_KeyDown);
-            this.Load += new EventHandler(Form22_Load);
 
-            // Bổ sung kết nối sự kiện Tick cho Timer (Đảm bảo chạy)
-            this.tmEgg.Tick += new System.EventHandler(this.tmEgg_Tick);
-            this.tmChicken.Tick += new System.EventHandler(this.tmChiken_Tick);
+            this.Load += Form22_Load;
+            this.KeyDown += Form22_KeyDown;
+
+            tmEgg.Tick += tmEgg_Tick;
+            tmChicken.Tick += tmChiken_Tick;
         }
 
         private void Form22_Load(object sender, EventArgs e)
         {
-            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
 
-            // Lấy vị trí ban đầu từ Designer Controls
-            xBasket = pbBasket.Location.X;
-            yBasket = pbBasket.Location.Y;
-            xChicken = pbChicken.Location.X;
-            yChicken = pbChicken.Location.Y;
-            xEgg = pbEgg.Location.X;
-            yEgg = pbEgg.Location.Y;
+            // Vị trí ban đầu
+            xBasket = pbBasket.Left;
+            yBasket = pbBasket.Top;
+            xChicken = pbChicken.Left;
+            yChicken = pbChicken.Top;
+            xEgg = pbEgg.Left;
+            yEgg = pbEgg.Top;
 
-            // --- TẢI HÌNH NỀN ---
+            // Background
             try
             {
-                string backgroundPath = Path.Combine(currentDirectory, @"images\background.png");
-                if (!File.Exists(backgroundPath))
+                string bg = Path.Combine(dir, @"images\background.png");
+                if (File.Exists(bg))
                 {
-                    backgroundPath = Path.Combine(currentDirectory, @"images\background.jpg");
-                }
-
-                if (File.Exists(backgroundPath))
-                {
-                    this.BackgroundImage = Image.FromFile(backgroundPath);
-                    this.BackgroundImageLayout = ImageLayout.Stretch;
-                }
-                else
-                {
-                    this.BackColor = Color.LightSkyBlue;
+                    BackgroundImage = Image.FromFile(bg);
+                    BackgroundImageLayout = ImageLayout.Stretch;
                 }
             }
-            catch (Exception) { this.BackColor = Color.LightSkyBlue; }
+            catch { }
 
-            // --- TẢI HÌNH ẢNH CONTROLS ---
-            try
-            {
-                pbBasket.Image = Image.FromFile(Path.Combine(currentDirectory, @"images\basket.png"));
-                pbEgg.Image = Image.FromFile(Path.Combine(currentDirectory, @"images\egg_gold.png"));
-                pbChicken.Image = Image.FromFile(Path.Combine(currentDirectory, @"images\chicken.png"));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải hình ảnh. Đảm bảo file trong thư mục images: " + ex.Message, "Lỗi Tài nguyên");
-            }
+            // Images
+            pbBasket.Image = LoadImageSafe(Path.Combine(dir, @"images\basket.png"));
+            pbEgg.Image = LoadImageSafe(Path.Combine(dir, @"images\egg_gold.png"));
+            pbChicken.Image = LoadImageSafe(Path.Combine(dir, @"images\chicken.png"));
 
-            // --- THIẾT KẾ ĐIỂM SỐ ---
+            // Score label
             lblScore.Text = "Điểm: 0";
             lblScore.Font = new Font("Arial", 18, FontStyle.Bold);
             lblScore.ForeColor = Color.Yellow;
@@ -96,24 +77,13 @@ namespace Example
             lblScore.Padding = new Padding(5);
             lblScore.BringToFront();
 
-            // --- TẢI TỆP ÂM THANH (SỬA LỖI ĐỊNH DẠNG: Chỉ SoundPlayer hỗ trợ .WAV) ---
-            try
-            {
-                string catchWav = Path.Combine(currentDirectory, @"images\catch_sound.wav");
-                string breakWav = Path.Combine(currentDirectory, @"images\break_sound.wav");
+            // Sounds (WAV only)
+            string catchWav = Path.Combine(dir, @"images\catch_sound.wav");
+            string breakWav = Path.Combine(dir, @"images\break_sound.wav");
 
-                if (File.Exists(catchWav)) catchPlayer.SoundLocation = catchWav;
-                if (File.Exists(breakWav)) breakPlayer.SoundLocation = breakWav;
+            if (File.Exists(catchWav)) catchPlayer.SoundLocation = catchWav;
+            if (File.Exists(breakWav)) breakPlayer.SoundLocation = breakWav;
 
-                // Nếu bạn chỉ có MP3, hãy thông báo:
-                if (!File.Exists(catchWav) && File.Exists(Path.Combine(currentDirectory, @"images\catch_sound.mp3")))
-                {
-                    MessageBox.Show("Cảnh báo: Tệp âm thanh MP3 không được hỗ trợ bởi SoundPlayer. Vui lòng chuyển sang định dạng WAV.", "Lỗi Âm thanh");
-                }
-            }
-            catch (Exception) { }
-
-            // --- Khởi động Timer ---
             tmEgg.Start();
             tmChicken.Start();
         }
@@ -128,59 +98,71 @@ namespace Example
 
             if (!isGameOver)
             {
-                // Phím phải
-                if (e.KeyValue == 39 && (xBasket < this.ClientSize.Width - pbBasket.Width))
-                {
-                    xBasket += xDeltaBasket;
-                }
-                // Phím trái
-                if (e.KeyValue == 37 && xBasket > 0)
-                {
+                if (e.KeyCode == Keys.Left && xBasket > 0)
                     xBasket -= xDeltaBasket;
-                }
+
+                if (e.KeyCode == Keys.Right &&
+                    xBasket < ClientSize.Width - pbBasket.Width)
+                    xBasket += xDeltaBasket;
+
                 pbBasket.Location = new Point(xBasket, yBasket);
             }
         }
 
         private void tmEgg_Tick(object sender, EventArgs e)
         {
-            if (isGameOver)
-            {
-                return;
-            }
+            if (isGameOver) return;
 
-            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
             yEgg += yDeltaEgg;
 
-            // LOGIC BẮT ĐƯỢC TRỨNG
-            Rectangle unionRect = Rectangle.Intersect(pbEgg.Bounds, pbBasket.Bounds);
-            if (unionRect.IsEmpty == false)
+            // Bắt trứng
+            if (pbEgg.Bounds.IntersectsWith(pbBasket.Bounds))
             {
                 score += 10;
-                lblScore.Text = "Điểm: " + score.ToString();
+                lblScore.Text = "Điểm: " + score;
                 try { catchPlayer.Play(); } catch { }
 
                 yEgg = 30;
-                xEgg = pbChicken.Location.X;
+                xEgg = pbChicken.Left;
+                pbEgg.Image = LoadImageSafe(Path.Combine(dir, @"images\egg_gold.png"));
                 pbEgg.Location = new Point(xEgg, yEgg);
-
-                pbEgg.Image = Image.FromFile(Path.Combine(currentDirectory, @"images\egg_gold.png"));
+                return;
             }
 
-            // LOGIC TRỨNG VỠ (KẾT THÚC TRÒ CHƠI)
-            else if (yEgg > this.ClientSize.Height - pbEgg.Height)
+            // Trứng vỡ
+            if (yEgg >= ClientSize.Height - pbEgg.Height)
             {
-                isGameOver = true;
+                // Dừng timer
                 tmEgg.Stop();
                 tmChicken.Stop();
 
-                try { breakPlayer.Play(); } catch { }
-                pbEgg.Image = Image.FromFile(Path.Combine(currentDirectory, @"images\egg_gold_broken.jpg"));
+                // Cố định trứng dưới đất
+                yEgg = ClientSize.Height - pbEgg.Height;
+                pbEgg.Location = new Point(xEgg, yEgg);
 
-                // HIỂN THỊ THÔNG BÁO END GAME
-                lblGameOver.Text = "--- GAME OVER ---\n\n" +
-                                   "⭐ ĐIỂM CUỐI: " + score + " ⭐\n\n" +
-                                   "Nhấn SPACE để chơi lại";
+                // Đổi ảnh vỡ
+                pbEgg.Image = LoadImageSafe(
+                    Path.Combine(dir, @"images\egg_gold_broken.jpg")
+                );
+                pbEgg.BringToFront();
+                pbEgg.Refresh();
+                Refresh();
+
+                // Âm thanh
+                try { breakPlayer.Play(); } catch { }
+
+                // Chờ để thấy trứng vỡ
+                Application.DoEvents();
+                System.Threading.Thread.Sleep(400);
+
+                // Game over
+                isGameOver = true;
+
+                lblGameOver.Text =
+                    "--- GAME OVER ---\n\n" +
+                    "⭐ ĐIỂM: " + score + " ⭐\n\n" +
+                    "Nhấn SPACE để chơi lại";
 
                 lblGameOver.Font = new Font("Arial", 36, FontStyle.Bold);
                 lblGameOver.ForeColor = Color.White;
@@ -188,10 +170,14 @@ namespace Example
                 lblGameOver.Padding = new Padding(20);
 
                 lblGameOver.Size = lblGameOver.PreferredSize;
-                lblGameOver.Location = new Point((this.ClientSize.Width - lblGameOver.Width) / 2,
-                                                 (this.ClientSize.Height - lblGameOver.Height) / 2);
+                lblGameOver.Location = new Point(
+                    (ClientSize.Width - lblGameOver.Width) / 2,
+                    (ClientSize.Height - lblGameOver.Height) / 2
+                );
+
                 lblGameOver.Visible = true;
                 lblGameOver.BringToFront();
+                return;
             }
 
             pbEgg.Location = new Point(xEgg, yEgg);
@@ -199,20 +185,30 @@ namespace Example
 
         private void tmChiken_Tick(object sender, EventArgs e)
         {
-            if (isGameOver)
-            {
-                tmChicken.Stop();
-                return;
-            }
+            if (isGameOver) return;
 
             xChicken += xDeltaChicken;
 
-            if (xChicken > this.ClientSize.Width - pbChicken.Width || xChicken <= 0)
+            if (xChicken <= 0 ||
+                xChicken >= ClientSize.Width - pbChicken.Width)
             {
                 xDeltaChicken = -xDeltaChicken;
             }
 
             pbChicken.Location = new Point(xChicken, yChicken);
+        }
+
+        private Image LoadImageSafe(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                return Image.FromStream(fs);
+            }
+        }
+
+        private void Form22_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

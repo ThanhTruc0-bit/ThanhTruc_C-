@@ -17,94 +17,101 @@
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            // Khai báo các Controls
-            this.lblScore = new System.Windows.Forms.Label();
-            this.pbChicken = new System.Windows.Forms.PictureBox();
-            this.pbEgg = new System.Windows.Forms.PictureBox();
-            this.pbBasket = new System.Windows.Forms.PictureBox();
-            this.tmEgg = new System.Windows.Forms.Timer(this.components);
-            this.tmChicken = new System.Windows.Forms.Timer(this.components);
-            this.lblGameOver = new System.Windows.Forms.Label();
-
-            ((System.ComponentModel.ISupportInitialize)(this.pbChicken)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEgg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBasket)).BeginInit();
-            this.SuspendLayout();
-
+            components = new System.ComponentModel.Container();
+            lblScore = new Label();
+            pbChicken = new PictureBox();
+            pbEgg = new PictureBox();
+            pbBasket = new PictureBox();
+            tmEgg = new System.Windows.Forms.Timer(components);
+            tmChicken = new System.Windows.Forms.Timer(components);
+            lblGameOver = new Label();
+            ((System.ComponentModel.ISupportInitialize)pbChicken).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbEgg).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbBasket).BeginInit();
+            SuspendLayout();
             // 
-            // lblScore 
+            // lblScore
             // 
-            this.lblScore.AutoSize = true;
-            this.lblScore.Location = new System.Drawing.Point(10, 10);
-            this.lblScore.Name = "lblScore";
-            this.lblScore.Text = "Điểm: 0";
-            this.lblScore.BackColor = System.Drawing.Color.Transparent;
-
+            lblScore.AutoSize = true;
+            lblScore.BackColor = Color.Transparent;
+            lblScore.Location = new Point(13, 15);
+            lblScore.Margin = new Padding(4, 0, 4, 0);
+            lblScore.Name = "lblScore";
+            lblScore.Size = new Size(60, 20);
+            lblScore.TabIndex = 4;
+            lblScore.Text = "Điểm: 0";
             // 
-            // pbChicken 
+            // pbChicken
             // 
-            this.pbChicken.Location = new System.Drawing.Point(300, 10);
-            this.pbChicken.Name = "pbChicken";
-            this.pbChicken.Size = new System.Drawing.Size(100, 100);
-            this.pbChicken.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbChicken.BackColor = System.Drawing.Color.Transparent;
-
+            pbChicken.BackColor = Color.Transparent;
+            pbChicken.Location = new Point(400, 15);
+            pbChicken.Margin = new Padding(4, 5, 4, 5);
+            pbChicken.Name = "pbChicken";
+            pbChicken.Size = new Size(133, 154);
+            pbChicken.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbChicken.TabIndex = 2;
+            pbChicken.TabStop = false;
             // 
-            // pbEgg 
+            // pbEgg
             // 
-            this.pbEgg.Location = new System.Drawing.Point(300, 10);
-            this.pbEgg.Name = "pbEgg";
-            this.pbEgg.Size = new System.Drawing.Size(50, 50);
-            this.pbEgg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbEgg.BackColor = System.Drawing.Color.Transparent;
-
+            pbEgg.BackColor = Color.Transparent;
+            pbEgg.Location = new Point(400, 15);
+            pbEgg.Margin = new Padding(4, 5, 4, 5);
+            pbEgg.Name = "pbEgg";
+            pbEgg.Size = new Size(67, 77);
+            pbEgg.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbEgg.TabIndex = 1;
+            pbEgg.TabStop = false;
             // 
-            // pbBasket 
+            // pbBasket
             // 
-            this.pbBasket.Location = new System.Drawing.Point(300, 550);
-            this.pbBasket.Name = "pbBasket";
-            this.pbBasket.Size = new System.Drawing.Size(70, 70);
-            this.pbBasket.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBasket.BackColor = System.Drawing.Color.Transparent;
-
+            pbBasket.BackColor = Color.Transparent;
+            pbBasket.Location = new Point(400, 846);
+            pbBasket.Margin = new Padding(4, 5, 4, 5);
+            pbBasket.Name = "pbBasket";
+            pbBasket.Size = new Size(93, 108);
+            pbBasket.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBasket.TabIndex = 3;
+            pbBasket.TabStop = false;
             // 
-            // tmEgg 
+            // tmEgg
             // 
-            this.tmEgg.Interval = 10;
-
+            tmEgg.Interval = 10;
             // 
-            // tmChicken 
+            // tmChicken
             // 
-            this.tmChicken.Interval = 10;
-
+            tmChicken.Interval = 10;
             // 
-            // lblGameOver 
+            // lblGameOver
             // 
-            this.lblGameOver.AutoSize = true;
-            this.lblGameOver.Visible = false;
-            this.lblGameOver.Name = "lblGameOver";
-            this.lblGameOver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter; // Quan trọng cho căn giữa
-
+            lblGameOver.AutoSize = true;
+            lblGameOver.Location = new Point(0, 0);
+            lblGameOver.Margin = new Padding(4, 0, 4, 0);
+            lblGameOver.Name = "lblGameOver";
+            lblGameOver.Size = new Size(0, 20);
+            lblGameOver.TabIndex = 0;
+            lblGameOver.TextAlign = ContentAlignment.MiddleCenter;
+            lblGameOver.Visible = false;
             // 
             // Form22
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 700);
-            this.Controls.Add(this.lblGameOver);
-            this.Controls.Add(this.pbEgg);
-            this.Controls.Add(this.pbChicken);
-            this.Controls.Add(this.pbBasket);
-            this.Controls.Add(this.lblScore);
-            this.Name = "Form22";
-            this.Text = "Catch Egg";
-
-            ((System.ComponentModel.ISupportInitialize)(this.pbChicken)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEgg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBasket)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1067, 1055);
+            Controls.Add(lblGameOver);
+            Controls.Add(pbEgg);
+            Controls.Add(pbChicken);
+            Controls.Add(pbBasket);
+            Controls.Add(lblScore);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "Form22";
+            Text = "Catch Egg";
+            Load += Form22_Load_1;
+            ((System.ComponentModel.ISupportInitialize)pbChicken).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbEgg).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbBasket).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

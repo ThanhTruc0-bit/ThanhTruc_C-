@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Example01
+namespace Example
 {
     public partial class Form2 : Form
     {
@@ -15,6 +15,11 @@ namespace Example01
         {
             this.Text = "Article for Button";
             this.Size = new Size(500, 500);
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

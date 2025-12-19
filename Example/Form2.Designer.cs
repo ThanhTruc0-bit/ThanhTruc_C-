@@ -1,4 +1,4 @@
-﻿namespace Example01
+﻿namespace Example
 {
     partial class Form2
     {
@@ -24,6 +24,7 @@
             Controls.Add(bt_OK);
             Name = "Form2";
             Text = "Form2";
+            Load += Form2_Load;
             ResumeLayout(false);
         }
     }
