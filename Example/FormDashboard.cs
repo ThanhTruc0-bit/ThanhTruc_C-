@@ -6,45 +6,82 @@ namespace Example
 {
     public partial class FormDashboard : Form
     {
+        private FormQL formQL; // giữ FormQL để lấy dữ liệu
+
         public FormDashboard()
         {
             InitializeComponent();
-            LoadEmployeeData();
 
-            // Hiệu ứng Hover chuyên nghiệp
-            AddHoverEffect(btnHome);
-            AddHoverEffect(btnNhanVien);
-            AddHoverEffect(btnReport);
+            LoadData();
+
+            // Hover UI
+            AddHover(btnHome);
+            AddHover(btnNhanVien);
+            AddHover(btnReport);
+
+            // 🔥 GẮN CLICK (QUAN TRỌNG)
+            btnNhanVien.Click += btnNhanVien_Click;
+            btnReport.Click += btnReport_Click;
         }
 
-        private void AddHoverEffect(Button btn)
+        // ================= HOVER EFFECT =================
+        private void AddHover(Button btn)
         {
-            btn.MouseEnter += (s, e) => {
-                btn.BackColor = Color.FromArgb(45, 55, 72);
+            btn.MouseEnter += (s, e) =>
+            {
+                btn.BackColor = Color.FromArgb(52, 152, 219);
                 btn.ForeColor = Color.White;
             };
-            btn.MouseLeave += (s, e) => {
+
+            btn.MouseLeave += (s, e) =>
+            {
                 btn.BackColor = Color.Transparent;
                 btn.ForeColor = Color.FromArgb(160, 174, 192);
             };
         }
 
-        private void LoadEmployeeData()
+        // ================= LOAD DASHBOARD =================
+        private void LoadData()
         {
-            dgvMain.Columns.Add("id", "Mã NV");
-            dgvMain.Columns.Add("name", "Tên Nhân Viên");
-            dgvMain.Columns.Add("dept", "Phòng Ban");
-            dgvMain.Columns.Add("perf", "Hiệu Suất");
+            dgvMain.Columns.Clear();
+            dgvMain.Rows.Clear();
 
-            dgvMain.Rows.Add("NV001", "Thanh Trúc", "Công nghệ thông tin", "98%");
-            
+            dgvMain.Columns.Add("id", "Mã NV");
+            dgvMain.Columns.Add("name", "Tên");
+            dgvMain.Columns.Add("dept", "Phòng ban");
+            dgvMain.Columns.Add("rate", "Hiệu suất");
         }
 
+        // ================= MỞ FORM NHÂN VIÊN =================
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
-            // Kết nối sang bản Form quản lý chi tiết
-            FormQL formDetail = new FormQL();
-            formDetail.Show();
+            if (formQL == null || formQL.IsDisposed)
+                formQL = new FormQL();
+
+            formQL.Show();
+            formQL.BringToFront();
         }
+
+        // ================= BÁO CÁO =================
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            if (formQL == null || formQL.IsDisposed)
+            {
+                MessageBox.Show(
+                    "Vui lòng mở Quản Lý Nhân Viên trước!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            // 👉 TRUYỀN DATAGRIDVIEW SANG FORMREPORT
+            FormReport report = new FormReport(formQL.EmployeeGrid);
+            report.Show();
+        }
+
+
+       
     }
 }

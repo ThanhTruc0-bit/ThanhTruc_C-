@@ -79,5 +79,8 @@
     <Compile Update="FormQL.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

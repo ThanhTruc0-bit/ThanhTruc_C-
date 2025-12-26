@@ -48,3 +48,4 @@ D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormLogin.res
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormQL.resources
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormDashboard.resources
 D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.Form2.resources
+D:\NguyenThiThanhTruc_119\Example\obj\Debug\net8.0-windows\Example.FormReport.resources
